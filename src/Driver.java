@@ -17,8 +17,8 @@ public class Driver {
 //        for(int i =1; i <= testCases; i++) {
 
 
-        String fileName = "Step3/inputs/test7.micro";      // set later to args[0] and setup in bash script
-        String outputName = "Step3/outputs/test7.out";     // set output args[0] + ".out";
+        String fileName = "Step4/inputs/test7.micro";      // set later to args[0] and setup in bash script
+        String outputName = "Step4/outputs/test7.out";     // set output args[0] + ".out";
         FileWriter myWriter = new FileWriter(outputName);
 
         try {
@@ -43,6 +43,12 @@ public class Driver {
             // Reference: "In Java 8:" will return the keys and values from symbol_table
             ArrayList output_to_writer = new ArrayList();
             ArrayList output_to_writer_error = new ArrayList();
+
+
+
+
+            // part 3
+            /*
             symbol_table.forEach((key, value) -> {
                 if(key != "GLOBAL") {
                     output_to_writer.add("");
@@ -67,6 +73,9 @@ public class Driver {
                 // output error text
                 myWriter.write(output_to_writer_error.get(0).toString());
             }
+
+
+            */
 
             // part 2
             /*
