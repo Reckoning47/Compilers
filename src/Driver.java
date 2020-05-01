@@ -1,8 +1,8 @@
 // CSCI 468
 // Chris Cooper, Spencer Lawry, Matthew Gober
+// Driver class for Compiler
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -17,8 +17,8 @@ public class Driver {
 //        for(int i =1; i <= testCases; i++) {
 
 
-        String fileName = "Step4/inputs/test7.micro";      // set later to args[0] and setup in bash script
-        String outputName = "Step4/outputs/test7.out";     // set output args[0] + ".out";
+        String fileName = "Step4/inputs/test_mult.micro";      // set later to args[0] and setup in bash script
+        String outputName = "Step4/outputs/test_multTester.out";     // set output args[0] + ".out";
         FileWriter myWriter = new FileWriter(outputName);
 
         try {
@@ -29,22 +29,24 @@ public class Driver {
             CommonTokenStream tokens = new CommonTokenStream(grammar, 0);
             // create list of tokens and utilize the Vocabulary interface to return string associated with token
             // Save for previous steps testing
-//            List<Token> tokenList = tokens.getTokens();
-//            Vocabulary vocab = grammar.getVocabulary();
+            //  List<Token> tokenList = tokens.getTokens();
+
+            Vocabulary vocab = grammar.getVocabulary();
             LittleParser myParser = new LittleParser(tokens);
             ParseTree tree = myParser.start();
-            CustomListener listener = new CustomListener();
-            new ParseTreeWalker().walk(listener, tree);
-            LinkedHashMap<String, LinkedHashMap<String, String>> symbol_table = listener.output_table();
+            CustomNewListener listener = new CustomNewListener();
+            ParseTreeWalker pTree = new ParseTreeWalker();
+            pTree.walk(listener, tree);
 
+            TinyInterpreter tinyCompiled = new TinyInterpreter(listener.st);
+            tinyCompiled.traverseTable(listener.rootASTNode);
+            tinyCompiled.printTinyOutput();
 
             // iterate through linkedhashmap, putting entries into Arraylist to be written out
             // https://stackoverflow.com/questions/12310914/how-to-iterate-through-linkedhashmap-with-lists-as-values
             // Reference: "In Java 8:" will return the keys and values from symbol_table
             ArrayList output_to_writer = new ArrayList();
             ArrayList output_to_writer_error = new ArrayList();
-
-
 
 
             // part 3
