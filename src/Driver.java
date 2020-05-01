@@ -40,13 +40,13 @@ public class Driver {
 
             TinyInterpreter tinyCompiled = new TinyInterpreter(listener.st);
             tinyCompiled.traverseTable(listener.rootASTNode);
-            tinyCompiled.printTinyOutput();
+            System.out.println(tinyCompiled.printTinyOutput());
+            myWriter.write(tinyCompiled.printTinyOutput());
 
             // iterate through linkedhashmap, putting entries into Arraylist to be written out
             // https://stackoverflow.com/questions/12310914/how-to-iterate-through-linkedhashmap-with-lists-as-values
             // Reference: "In Java 8:" will return the keys and values from symbol_table
-            ArrayList output_to_writer = new ArrayList();
-            ArrayList output_to_writer_error = new ArrayList();
+
 
 
             // part 3

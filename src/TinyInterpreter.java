@@ -201,12 +201,14 @@ public class TinyInterpreter {
         checkNode(root);
     }
 
-    public void printTinyOutput(){
+    public String printTinyOutput(){
 //        for (String line2:code) {
 //            System.out.println(";" + line2);
 //        }
+        StringBuilder strOut = new StringBuilder();
         for (String line:tinyCode) {
-            System.out.println(line);
+            strOut.append(line + "\n");
         }
+        return strOut.toString();
     }
 }
